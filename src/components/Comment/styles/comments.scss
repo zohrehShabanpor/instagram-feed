@@ -1,0 +1,38 @@
+/** @format */
+
+.comment-component {
+  display: flex;
+  column-gap: 20px;
+  padding-block-end: 32px;
+
+  img {
+    background-color: #f9fbfa;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+  }
+
+  &__content {
+    margin-inline-end: auto;
+
+    &--reply {
+      color: #a2abb4;
+      font-size: 12px;
+    }
+  }
+
+  &__like {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    path,
+    span {
+      color: #a2abb4;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+}

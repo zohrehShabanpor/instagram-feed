@@ -1,0 +1,16 @@
+/** @format */
+
+.feed-module {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  position: relative;
+  overflow: hidden;
+  margin-inline: auto;
+
+  &__content {
+    background-color: #0c0f14;
+    flex-grow: 1;
+    padding-block: 44px 44px;
+  }
+}
