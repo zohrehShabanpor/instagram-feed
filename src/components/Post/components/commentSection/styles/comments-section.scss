@@ -1,0 +1,50 @@
+/** @format */
+
+.post-comment-section-component {
+  &__add-container {
+    width: 100%;
+    position: fixed;
+    max-width: calc(500px - 32px);
+    bottom: 0;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    background-color: #25282d !important;
+    margin-inline-start: -8px;
+
+    &--avatar {
+      width: 32px !important;
+      height: 32px !important;
+    }
+  }
+
+  &__reply {
+    width: 100%;
+    position: fixed;
+    max-width: calc(500px - 32px);
+    bottom: 48px;
+    margin-inline-start: -8px;
+    background-color: #25282d !important;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      color: #a2abb4;
+      font-size: 12px;
+    }
+
+    &--close {
+      cursor: pointer;
+      svg {
+        width: 16px;
+        height: 16px;
+        path {
+          fill: #a2abb4;
+        }
+      }
+    }
+  }
+}

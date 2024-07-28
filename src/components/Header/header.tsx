@@ -1,8 +1,10 @@
 /** @format */
 
-import { memo } from "react";
-import "./styles/header.scss";
 import { FavoriteBorder, Send } from "@mui/icons-material";
+import { memo } from "react";
+
+import "./styles/header.scss";
+
 import { SVG } from "../SVG/svg";
 
 export const Header = memo(() => {

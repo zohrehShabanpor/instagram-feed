@@ -1,8 +1,9 @@
 /** @format */
 
-import { memo } from "react";
-import "./styles/navbar.scss";
 import { AccountCircle, ControlPoint, Home, Search } from "@mui/icons-material";
+import { memo } from "react";
+
+import "./styles/navbar.scss";
 
 export const Navbar = memo(() => {
   return (

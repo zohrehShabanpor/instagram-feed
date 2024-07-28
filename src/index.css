@@ -23,6 +23,8 @@ span {
   color: #f9fbfa;
 }
 
+/* MUI overwrites */
+
 .MuiDrawer-root.MuiDrawer-modal {
   max-width: 500px;
   margin-inline: auto;
@@ -36,4 +38,13 @@ span {
   .MuiPaper-root.MuiPaper-elevation {
     height: 65%;
   }
+}
+
+.MuiInputBase-input.MuiOutlinedInput-input {
+  padding: 0;
+  border: none !important;
+  color: #f9fbfa;
+}
+.MuiOutlinedInput-notchedOutline {
+  border: none !important;
 }

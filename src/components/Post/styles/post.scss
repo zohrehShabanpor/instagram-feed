@@ -44,8 +44,6 @@
 
   &__caption {
     padding-inline: 18px;
-    &--content {
-    }
 
     &--username {
       font-weight: 600;
@@ -72,6 +70,9 @@
       display: flex;
       align-items: center;
       column-gap: 16px;
+      div {
+        cursor: pointer;
+      }
     }
   }
 }

@@ -9,45 +9,52 @@ import {
   Send,
 } from "@mui/icons-material";
 import { memo, useState } from "react";
-import comments from "../../mock/COMMENTS_MOCK.json";
-
-import "./styles/post.scss";
-import { BottomSheet } from "../BottomSheet/bottomSheet";
-import { Comment } from "../Comment/comment";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import {
-  like,
-  LikeAction,
-  unlike,
-  UnLikeAction,
-} from "../../actions/postActions";
 import { Dispatch } from "redux";
 
+import "./styles/post.scss";
+
+import { RootState } from "../../@redux/store/store";
+import { likePost, PostActionTypes } from "../../@redux/actions/postActions";
+import { PostCommentSection } from "./components/commentSection/commentSection";
+
 export type postType = {
+  id: number;
   username: string;
   full_name: string;
   profile_picture: string;
   post_image: string;
   post_caption: string;
   post_likes: number;
+  is_liked?: boolean;
 };
 
 type postProps = {
-  post: postType;
+  id: number;
 };
 
-export const Post = memo(({ post }: postProps) => {
-  const isLike = useSelector((state: RootState) => state.post.isLiked);
-  const dispatch = useDispatch<Dispatch<LikeAction | UnLikeAction>>();
+export const Post = memo(({ id }: postProps) => {
+  const post = useSelector((state: RootState) =>
+    state.post?.posts.find((e) => e.id === id)
+  );
+  const commentsLength = useSelector(
+    (state: RootState) =>
+      state.comment?.comments.filter((e) => e.post_id === id).length
+  );
+
+  const postDispatch = useDispatch<Dispatch<PostActionTypes>>();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  if (!post) return null;
+
   const {
-    full_name,
     post_caption,
     post_image,
     post_likes,
     profile_picture,
     username,
+    is_liked,
   } = post;
 
   return (
@@ -56,7 +63,7 @@ export const Post = memo(({ post }: postProps) => {
         <div className="post-component__main--header">
           <div className="post-component__main--avatar">
             <img src={profile_picture} />
-            <span>{full_name}</span>
+            <span>{username}</span>
           </div>
           <MoreVert />
         </div>
@@ -66,10 +73,10 @@ export const Post = memo(({ post }: postProps) => {
         <div className="post-component__toolbar--start">
           <div
             onClick={() => {
-              dispatch(isLike ? like() : unlike());
+              postDispatch(likePost({ id }));
             }}
           >
-            {isLike ? <Favorite /> : <FavoriteBorder />}
+            {is_liked ? <Favorite /> : <FavoriteBorder />}
           </div>
           <div
             onClick={() => {
@@ -90,25 +97,23 @@ export const Post = memo(({ post }: postProps) => {
           <span className="post-component__caption--username">{username}</span>
           <span>{post_caption}</span>
         </div>
-        <span
-          onClick={() => {
-            setIsOpen(true);
-          }}
-          className="post-component__caption--comment"
-        >{`View all ${comments.length} comments`}</span>
+        {commentsLength ? (
+          <span
+            onClick={() => {
+              setIsOpen(true);
+            }}
+            className="post-component__caption--comment"
+          >{`View all ${commentsLength} comments`}</span>
+        ) : null}
       </div>
-      <BottomSheet
-        name="Comments"
-        open={isOpen}
-        onOpen={() => {}}
+      <PostCommentSection
+        post_id={id}
+        userName={username}
+        isOpen={isOpen}
         onClose={() => {
           setIsOpen(false);
         }}
-      >
-        {comments.map((item) => (
-          <Comment comment={item} />
-        ))}
-      </BottomSheet>
+      />
     </div>
   );
 });

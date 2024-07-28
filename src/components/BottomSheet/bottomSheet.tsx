@@ -29,7 +29,7 @@ export const BottomSheet = memo(
           <div className="bottom-sheet-component__header--puller"></div>
           <span className="bottom-sheet-component__header--name">{name}</span>
         </div>
-        {children}
+        <div className="bottom-sheet-component__children">{children}</div>
       </SwipeableDrawer>
     );
   }

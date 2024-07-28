@@ -5,6 +5,15 @@
   column-gap: 20px;
   padding-block-end: 32px;
 
+  &--replied {
+    padding-inline-start: 46px;
+  }
+
+  &__avatar {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
   img {
     background-color: #f9fbfa;
     border-radius: 50%;
@@ -18,6 +27,7 @@
     &--reply {
       color: #a2abb4;
       font-size: 12px;
+      cursor: pointer;
     }
   }
 
@@ -25,6 +35,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    div {
+      cursor: pointer;
+    }
 
     path,
     span {
